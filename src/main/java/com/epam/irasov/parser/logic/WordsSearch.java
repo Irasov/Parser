@@ -5,7 +5,7 @@ import com.epam.irasov.parser.entity.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchWords {
+public class WordsSearch {
 
     public static List<SentencePart> sentenceWords(List<Paragraph> paragraphs, int paragraphNumber, int sentenceNumber) {
         Sentence sentence;
@@ -35,7 +35,7 @@ public class SearchWords {
     }
 
 
-    public static List<SentencePart> foundWords(List<SentencePart> w,List<SentencePart> ww) {
+    public static List<SentencePart> UniqueWordsSearch(List<SentencePart> w, List<SentencePart> ww) {
         List<SentencePart> foundWords = new ArrayList<SentencePart>();
         for (SentencePart ss1 : w) {
             int repetitionWords = 0;

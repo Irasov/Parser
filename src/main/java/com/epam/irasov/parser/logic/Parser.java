@@ -1,62 +1,61 @@
 package com.epam.irasov.parser.logic;
 
 import com.epam.irasov.parser.entity.*;
-import com.epam.irasov.parser.utils.FileOperation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParserText {
+public class Parser {
 
-    public Text parse(String textFile) {
+    public Text textParsing(String textFile) {
         Text text = new Text();
         String[] textParagraphs = textFile.split("\n");
         for (String textParagraph : textParagraphs) {
-            text.add(parseParagraph(textParagraph));
+            text.add(paragraphParsing(textParagraph));
         }
         return text;
     }
 
 
-    public Paragraph parseParagraph(String textParagraph) {
+    public Paragraph paragraphParsing(String textParagraph) {
         Paragraph paragraph = new Paragraph();
         String[] textSentences = textParagraph.split("(?<=[.!?]) ");
         for (String textSentence : textSentences) {
-            paragraph.add(parseSentence(textSentence));
+            paragraph.add(sentenceParsing(textSentence));
         }
         return paragraph;
     }
 
-    public Sentence parseSentence(String textSentence) {
+    public Sentence sentenceParsing(String textSentence) {
         String regexPart = ("\\w+?(\\p{Punct}|\\p{Blank})?(\\p{Punct}|\\p{Blank})");
         Pattern pPart = Pattern.compile(regexPart);
         Matcher mPart = pPart.matcher(textSentence);
         String regexSymbol = ("(\\p{Punct})|(\\p{Blank})");
         Pattern pSymbol = Pattern.compile(regexSymbol);
         Sentence sentence = new Sentence();
-        while(mPart.find()){
-            sentence.add(parseWord(mPart.group().substring(0, mPart.group().length() - 1)));
+        while (mPart.find()) {
+            sentence.add(wordParsing(mPart.group().substring(0, mPart.group().length() - 1)));
             Matcher mSymbol = pSymbol.matcher(mPart.group());
-            while(mSymbol.find()){
-                sentence.add(parsePartSentence(mSymbol.group()));
+            while (mSymbol.find()) {
+                sentence.add(partSentenceParsing(mSymbol.group()));
             }
 
         }
         return sentence;
     }
 
-    private SentencePart parseWord(String textWord) {
+    private SentencePart wordParsing(String textWord) {
         String regexPart = ("\\w");
         Pattern pPart = Pattern.compile(regexPart);
         Matcher mPart = pPart.matcher(textWord);
         Word word = new Word(SentencePart.SentencePartType.WORD);
-        while(mPart.find()){
-            word.addLetter((Symbol) parsePartSentence(mPart.group()));
+        while (mPart.find()) {
+            word.addLetter((Symbol) partSentenceParsing(mPart.group()));
         }
         return word;
     }
 
-    private SentencePart parsePartSentence(String textPartSentence) {
+    private SentencePart partSentenceParsing(String textPartSentence) {
         Symbol symbol;
         String regexPart = ("\\w");
         Pattern pPart = Pattern.compile(regexPart);
