@@ -1,20 +1,24 @@
 package com.epam.irasov.parser.entity;
 
-import java.util.List;
-
 public class Symbol implements  SentencePart {
+
+    public static enum SymbolType{LETTER,PUNCTUATION,WHITESPACE}
 
     private SentencePartType type;
     private String symbol;
+    private SymbolType symbolType;
 
-    public Symbol(String symbol, SentencePartType type) {
+    public Symbol(String symbol, SentencePartType type, SymbolType symbolType ) {
         this.symbol = symbol;
         this.type = type;
+        this.symbolType = symbolType;
     }
 
     public SentencePartType getType() {
         return this.type;
     }
+
+    public SymbolType getSymbolType(){return this.symbolType;}
 
     public String buildOriginalString() {
         return this.symbol;
