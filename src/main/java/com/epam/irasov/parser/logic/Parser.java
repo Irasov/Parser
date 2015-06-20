@@ -7,9 +7,9 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    public Text textParsing(String textFile) {
+    public Text textParsing(String stringText) {
         Text text = new Text();
-        String[] textParagraphs = textFile.split("\n");
+        String[] textParagraphs = stringText.split("\n");
         for (String textParagraph : textParagraphs) {
             text.add(paragraphParsing(textParagraph));
         }
@@ -17,19 +17,19 @@ public class Parser {
     }
 
 
-    public Paragraph paragraphParsing(String textParagraph) {
+    public Paragraph paragraphParsing(String stringParagraph) {
         Paragraph paragraph = new Paragraph();
-        String[] textSentences = textParagraph.split("(?<=[.!?]) ");
+        String[] textSentences = stringParagraph.split("(?<=[.!?]) ");
         for (String textSentence : textSentences) {
             paragraph.add(sentenceParsing(textSentence));
         }
         return paragraph;
     }
 
-    public Sentence sentenceParsing(String textSentence) {
+    public Sentence sentenceParsing(String stringSentence) {
         String regexPart = ("\\w+?(\\p{Punct}|\\p{Blank})?(\\p{Punct}|\\p{Blank})");
         Pattern pPart = Pattern.compile(regexPart);
-        Matcher mPart = pPart.matcher(textSentence);
+        Matcher mPart = pPart.matcher(stringSentence);
         String regexSymbol = ("(\\p{Punct})|(\\p{Blank})");
         Pattern pSymbol = Pattern.compile(regexSymbol);
         Sentence sentence = new Sentence();
@@ -44,10 +44,10 @@ public class Parser {
         return sentence;
     }
 
-    private SentencePart wordParsing(String textWord) {
+    private SentencePart wordParsing(String stringWord) {
         String regexPart = ("\\w");
         Pattern pPart = Pattern.compile(regexPart);
-        Matcher mPart = pPart.matcher(textWord);
+        Matcher mPart = pPart.matcher(stringWord);
         Word word = new Word(SentencePart.SentencePartType.WORD);
         while (mPart.find()) {
             word.addLetter((Symbol) partSentenceParsing(mPart.group()));
@@ -55,23 +55,23 @@ public class Parser {
         return word;
     }
 
-    private SentencePart partSentenceParsing(String textPartSentence) {
+    private SentencePart partSentenceParsing(String stringPartSentence) {
         Symbol symbol;
         String regexPart = ("\\w");
         Pattern pPart = Pattern.compile(regexPart);
-        Matcher mPart = pPart.matcher(textPartSentence);
+        Matcher mPart = pPart.matcher(stringPartSentence);
         if (mPart.find()) {
             symbol = new Symbol(mPart.group(), Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.LETTER );
             return symbol;
         }
         regexPart = ("\\p{Punct}");
         pPart = Pattern.compile(regexPart);
-        mPart = pPart.matcher(textPartSentence);
+        mPart = pPart.matcher(stringPartSentence);
         if (mPart.find()) {
             symbol = new Symbol(mPart.group(), Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.PUNCTUATION);
             return symbol;
         } else {
-            symbol = new Symbol(textPartSentence, Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.WHITESPACE);
+            symbol = new Symbol(stringPartSentence, Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.WHITESPACE);
             return symbol;
         }
     }
