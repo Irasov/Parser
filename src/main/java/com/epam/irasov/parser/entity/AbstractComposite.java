@@ -30,4 +30,18 @@ public class AbstractComposite<E extends Component> implements Composite<E> {
         }
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractComposite)) return false;
+
+        AbstractComposite<?> that = (AbstractComposite<?>) o;
+        return !(elements != null ? !elements.equals(that.elements) : that.elements != null);
+    }
+
+    @Override
+    public int hashCode() {
+        return elements != null ? elements.hashCode() : 0;
+    }
 }

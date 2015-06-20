@@ -36,4 +36,21 @@ public class Word implements SentencePart {
         }
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Word word = (Word) o;
+        if (symbols != null ? !symbols.equals(word.symbols) : word.symbols != null) return false;
+        return type == word.type;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = symbols != null ? symbols.hashCode() : 0;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
+    }
 }
