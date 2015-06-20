@@ -11,6 +11,6 @@ public class Runner {
         ParserText parser = new ParserText();
         Text text = parser.parse(FileOperation.fileRead());
         System.out.println(text.buildOriginalString());
-        Reporter.printFoundWords(SearchWords.foundWords(text.getPart()));
+        Reporter.printFoundWords(SearchWords.foundWords(SearchWords.sentenceWords(text.getPart(),0,0),SearchWords.sentenceWordsNotConsiderOnSentence(text.getPart(),0,0)));
     }
 }
