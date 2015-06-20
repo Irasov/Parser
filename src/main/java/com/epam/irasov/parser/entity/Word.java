@@ -3,7 +3,7 @@ package com.epam.irasov.parser.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Word implements Component, SentencePart{// implements SentencePart {
+public class Word implements SentencePart {
 
     private List<Symbol> symbols;
     private SentencePartType type;
@@ -14,15 +14,11 @@ public class Word implements Component, SentencePart{// implements SentencePart 
     }
 
     public SentencePartType getType() {
-       return this.type;
+        return this.type;
     }
 
-    public void addLetter(Symbol symbol){
+    public void addLetter(Symbol symbol) {
         this.symbols.add(symbol);
-    }
-
-    public void add(Component component) {
-
     }
 
     public Component get(int index) {
