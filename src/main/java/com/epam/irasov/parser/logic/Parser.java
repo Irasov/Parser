@@ -61,17 +61,17 @@ public class Parser {
         Pattern pPart = Pattern.compile(regexPart);
         Matcher mPart = pPart.matcher(textPartSentence);
         if (mPart.find()) {
-            symbol = new Symbol(mPart.group(), SentencePart.SentencePartType.LETTER);
+            symbol = new Symbol(mPart.group(), Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.LETTER );
             return symbol;
         }
         regexPart = ("\\p{Punct}");
         pPart = Pattern.compile(regexPart);
         mPart = pPart.matcher(textPartSentence);
         if (mPart.find()) {
-            symbol = new Symbol(mPart.group(), SentencePart.SentencePartType.PUNCTUATION);
+            symbol = new Symbol(mPart.group(), Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.PUNCTUATION);
             return symbol;
         } else {
-            symbol = new Symbol(textPartSentence, SentencePart.SentencePartType.SPACEORTAB);
+            symbol = new Symbol(textPartSentence, Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.WHITESPACE);
             return symbol;
         }
     }
