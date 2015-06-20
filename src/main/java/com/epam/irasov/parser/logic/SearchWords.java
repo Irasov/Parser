@@ -35,14 +35,11 @@ public class SearchWords {
     }
 
 
-    public static List<SentencePart> foundWords(List<Paragraph> paragraphs) {
+    public static List<SentencePart> foundWords(List<SentencePart> w,List<SentencePart> ww) {
         List<SentencePart> foundWords = new ArrayList<SentencePart>();
-        List<SentencePart> wordsFirstSentence = sentenceWords(paragraphs, 0, 0);
-        List<SentencePart> wordsSentences = sentenceWordsNotConsiderOnSentence(paragraphs, 0, 0);
-
-        for (SentencePart ss1 : wordsFirstSentence) {
+        for (SentencePart ss1 : w) {
             int repetitionWords = 0;
-            for (SentencePart ss2 : wordsSentences) {
+            for (SentencePart ss2 : ww) {
                 if (ss1.equals(ss2)) {
                     repetitionWords++;
                 }
