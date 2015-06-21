@@ -1,7 +1,6 @@
 package com.epam.irasov.parser.utils;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileOperation {
@@ -19,5 +18,18 @@ public class FileOperation {
         text.append(scanner.next());
         scanner.close();
         return text.toString();
+    }
+
+    public static void fileWrite(String words, String filename){
+        try
+        {
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "UTF8"));
+            out.write(words);
+            out.close();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }
