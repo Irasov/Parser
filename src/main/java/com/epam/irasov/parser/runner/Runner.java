@@ -13,7 +13,7 @@ public class Runner {
         LOGGER.info("Info: parser project launched");
         Parser parser = new Parser();
         Text text = parser.textParsing(FileOperation.fileRead());
-        Reporter.printFoundWords(WordsSearch.UniqueWordsSearch(WordsSearch.sentenceWords(text.getPart(), 0, 0), WordsSearch.sentenceWordsNotConsiderOnSentence(text.getPart(), 0, 0)));
+        Reporter.printFoundWords(WordsSearch.uniqueWordsSearch(WordsSearch.sentenceWords(text.getPart(), 0, 0), WordsSearch.textWordsNotConsiderOnSentence(text.getPart(), 0, 0)));
         LOGGER.info("Info: parser has completed execution of the project");
     }
 }
