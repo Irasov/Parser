@@ -23,4 +23,12 @@ public class Reporter {
             LOGGER.info("Not found words");
         }
     }
+
+    public static String reportFoundWords(List<SentencePart> foundWords) {
+        StringBuilder sb = new StringBuilder();
+        for (SentencePart word : foundWords) {
+            sb.append(word.buildOriginalString()).append("\n");
+        }
+        return sb.toString();
+    }
 }

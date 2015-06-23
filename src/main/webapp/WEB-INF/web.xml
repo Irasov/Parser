@@ -11,12 +11,22 @@
         <servlet-name>ResultServlet</servlet-name>
         <servlet-class>com.epam.irasov.parser.ResultServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>OldServlet</servlet-name>
-        <url-pattern>/old</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>com.epam.irasov.parser.Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ResultServlet</servlet-name>
         <url-pattern>/result</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Servlet</servlet-name>
+        <url-pattern>/start</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>OldServlet</servlet-name>
+        <url-pattern>/old</url-pattern>
     </servlet-mapping>
 </web-app>
