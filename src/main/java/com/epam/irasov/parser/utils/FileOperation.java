@@ -4,6 +4,21 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileOperation {
+
+    public static String fileRead(String StringText) {
+        StringBuilder text = new StringBuilder();
+        try
+        {
+            BufferedReader out = new BufferedReader(new InputStreamReader(new FileInputStream(StringText), "UTF8"));
+            text.append(out.read());
+            out.close();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return text.toString();
+    }
+
     public static String fileRead() {
         Settings settings = Settings.getInstance();
         try {
