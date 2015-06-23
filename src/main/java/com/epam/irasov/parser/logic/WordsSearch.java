@@ -18,7 +18,7 @@ public class WordsSearch {
         return wordsSentence;
     }
 
-    public static List<SentencePart> sentenceWordsNotConsiderOnSentence(List<Paragraph> paragraphs, int paragraphNumber, int sentenceNumber){
+    public static List<SentencePart> textWordsNotConsiderOnSentence(List<Paragraph> paragraphs, int paragraphNumber, int sentenceNumber){
         List<SentencePart> wordsSentences = new ArrayList<SentencePart>();
         for (Paragraph p : paragraphs) {
             for (Sentence s : p.getPart()) {
@@ -35,16 +35,10 @@ public class WordsSearch {
     }
 
 
-    public static List<SentencePart> UniqueWordsSearch(List<SentencePart> w, List<SentencePart> ww) {
+    public static List<SentencePart> uniqueWordsSearch(List<SentencePart> w, List<SentencePart> ww) {
         List<SentencePart> foundWords = new ArrayList<SentencePart>();
-        for (SentencePart ss1 : w) {
-            int repetitionWords = 0;
-            for (SentencePart ss2 : ww) {
-                if (ss1.equals(ss2)) {
-                    repetitionWords++;
-                }
-            }
-            if (repetitionWords == 0) {
+        for(SentencePart ss1 : w) {
+            if(!ww.contains(ss1)){
                 foundWords.add(ss1);
             }
         }
