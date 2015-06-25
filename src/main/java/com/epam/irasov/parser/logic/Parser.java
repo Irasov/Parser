@@ -45,12 +45,15 @@ public class Parser {
     }
 
     private SentencePart wordParsing(String stringWord) {
+        String regexPart = ("\\w");
+        Pattern pPart = Pattern.compile(regexPart);
+        Matcher mPart = pPart.matcher(stringWord);
         Word word = new Word(SentencePart.SentencePartType.WORD);
-        char[] chars = stringWord.toCharArray();
-        for (char ch:chars){
-            word.addLetter((Symbol) partSentenceParsing(String.valueOf(ch)));
+        while (mPart.find()) {
+            word.addLetter((Symbol) partSentenceParsing(mPart.group()));
         }
         return word;
+
     }
 
     private SentencePart partSentenceParsing(String stringPartSentence) {
