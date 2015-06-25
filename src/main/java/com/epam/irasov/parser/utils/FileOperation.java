@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class FileOperation {
 
-    public static String fileRead(String StringText) {
+    public static String fileRead(String stringText) {
         StringBuilder text = new StringBuilder();
         try
         {
-            BufferedReader out = new BufferedReader(new InputStreamReader(new FileInputStream(StringText), "UTF8"));
+            BufferedReader out = new BufferedReader(new InputStreamReader(new FileInputStream(stringText), "UTF-8"));
             text.append(out.read());
             out.close();
         } catch (Exception e)
