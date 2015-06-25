@@ -45,12 +45,10 @@ public class Parser {
     }
 
     private SentencePart wordParsing(String stringWord) {
-        String regexPart = ("\\w");
-        Pattern pPart = Pattern.compile(regexPart);
-        Matcher mPart = pPart.matcher(stringWord);
         Word word = new Word(SentencePart.SentencePartType.WORD);
-        while (mPart.find()) {
-            word.addLetter((Symbol) partSentenceParsing(mPart.group()));
+        char[] chars = stringWord.toCharArray();
+        for (char ch:chars){
+            word.addLetter((Symbol) partSentenceParsing(String.valueOf(ch)));
         }
         return word;
     }
@@ -61,7 +59,7 @@ public class Parser {
         Pattern pPart = Pattern.compile(regexPart);
         Matcher mPart = pPart.matcher(stringPartSentence);
         if (mPart.find()) {
-            symbol = new Symbol(mPart.group(), Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.LETTER );
+            symbol = new Symbol(mPart.group(), Symbol.SentencePartType.SYMBOL, Symbol.SymbolType.LETTER);
             return symbol;
         }
         regexPart = ("\\p{Punct}");
