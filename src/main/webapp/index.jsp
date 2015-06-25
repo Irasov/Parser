@@ -1,12 +1,19 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>language selection</title>
+    <title>
+        <fmt:bundle basename="i18n">
+        <fmt:message key="language"/>
+        </fmt:bundle>
+    </title>
 </head>
 <body>
-Choose language (en or ru):
+    <fmt:bundle basename="i18n">
+    <fmt:message key="language"/>
+    </fmt:bundle>
 <form action="${pageContext.request.contextPath}/start" method="get">
-  <textarea name="local" id="local" cols="3" rows="1"></textarea>
+  <textarea name="locale" id="locale" cols="3" rows="1"></textarea>
   <div>
     <button type="submit">OK</button>
   </div>

@@ -1,16 +1,35 @@
-<%--@elvariable id="bundle" type="javax.servlet.jstl"--%>
-<%--@elvariable id="fondWords" type="java.lang.String"--%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--@elvariable id="foundWords" type="java.lang.String"--%>
+<%--@elvariable id="locale" type="java.lang.String"--%>
 <%--@elvariable id="text" type="com.epam.irasov.parser.entity.Text"--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${bundle.getInternationalization("parse")}</title>
+    <title>
+        <fmt:setLocale value="${locale}"/>
+        <fmt:setBundle basename="i18n" var="lang"/>
+        <fmt:message key="result" bundle="${lang}"/>
+    </title>
 </head>
 <body>
-
-<div>${bundle.getInternationalization("text")}</div>
-${text.buildOriginalString()}
-<div>${bundle.getInternationalization("found.words")}</div>
-${fondWords}
+    <div>
+        <fmt:setLocale value="${locale}"/>
+        <fmt:setBundle basename="i18n" var="lang"/>
+        <fmt:message key="text" bundle="${lang}"/>
+    </div>
+    <div>
+        <c:forEach items="${text.elements}" var="element">
+            <p>${element.buildOriginalString()}</p>
+        </c:forEach>
+    </div>
+    <div>
+        <fmt:setLocale value="${locale}"/>
+        <fmt:setBundle basename="i18n" var="lang"/>
+        <fmt:message key="found.words" bundle="${lang}"/>
+    </div>
+    <div>
+            <p>${foundWords}</p>
+    </div>
 </body>
 </html>
