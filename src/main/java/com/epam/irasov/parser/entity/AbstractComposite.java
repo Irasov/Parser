@@ -19,13 +19,13 @@ public class AbstractComposite<E extends Component> implements Composite<E> {
         return elements.get(index);
     }
 
-    public List<E> getPart() {
+    public List<E> getElements() {
         return elements;
     }
 
     public String buildOriginalString() {
         StringBuilder sb = new StringBuilder();
-        for (E e : getPart()) {
+        for (E e : getElements()) {
             sb.append(e.buildOriginalString());
         }
         return sb.toString();

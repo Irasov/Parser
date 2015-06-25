@@ -25,13 +25,13 @@ public class Word implements SentencePart {
         return symbols.get(index);
     }
 
-    public List<Symbol> getPart() {
+    public List<Symbol> getElements() {
         return symbols;
     }
 
     public String buildOriginalString() {
         StringBuilder sb = new StringBuilder();
-        for (Symbol symbol : getPart()) {
+        for (Symbol symbol : getElements()) {
             sb.append(symbol.buildOriginalString());
         }
         return sb.toString();

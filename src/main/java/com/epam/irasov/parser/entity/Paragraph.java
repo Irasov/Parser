@@ -8,7 +8,7 @@ public class Paragraph extends AbstractComposite<Sentence>{
     @Override
     public String buildOriginalString() {
         StringBuilder sb = new StringBuilder();
-        for (Sentence s : getPart()) {
+        for (Sentence s : getElements()) {
             sb.append(s.buildOriginalString()).append(" ");
         }
         return sb.toString();

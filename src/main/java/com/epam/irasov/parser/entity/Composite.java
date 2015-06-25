@@ -11,5 +11,5 @@ public interface Composite<E extends Component> extends Component {
     boolean deepContains(E e);
     */
     E get(int index);
-    List<E> getPart();
+    List<E> getElements();
 }
