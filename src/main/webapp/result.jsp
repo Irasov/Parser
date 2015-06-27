@@ -9,14 +9,14 @@
     <title>
         <fmt:setLocale value="${locale}"/>
         <fmt:setBundle basename="i18n" var="lang"/>
-        <fmt:message key="result" bundle="${lang}"/>
+        <fmt:message key="result.parsing" bundle="${lang}"/>
     </title>
 </head>
 <body>
     <div>
         <fmt:setLocale value="${locale}"/>
         <fmt:setBundle basename="i18n" var="lang"/>
-        <fmt:message key="text" bundle="${lang}"/>
+        <fmt:message key="text.after" bundle="${lang}"/>
     </div>
     <div>
         <c:forEach items="${text.elements}" var="element">

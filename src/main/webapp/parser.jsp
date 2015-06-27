@@ -6,14 +6,14 @@
     <title>
         <fmt:setLocale value="${locale}" />
         <fmt:setBundle basename="i18n" var="lang"/>
-        <fmt:message key="parse" bundle="${lang}"/>
+        <fmt:message key="parse.search" bundle="${lang}"/>
     </title>
 </head>
 <body>
 <div>
     <fmt:setLocale value="${locale}" />
     <fmt:setBundle basename="i18n" var="lang"/>
-    <fmt:message key="enter" bundle="${lang}"/>
+    <fmt:message key="enter.text" bundle="${lang}"/>
 </div>
 <form action="${pageContext.request.contextPath}/old" method="post">
         <textarea name="text" id="text" cols="100" rows="30"></textarea>
@@ -21,7 +21,7 @@
         <button type="submit">
             <fmt:setLocale value="${locale}" />
             <fmt:setBundle basename="i18n" var="lang"/>
-            <fmt:message key="parse" bundle="${lang}"/>
+            <fmt:message key="parse.search" bundle="${lang}"/>
         </button>
     </div>
 </form>
