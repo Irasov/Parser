@@ -17,7 +17,7 @@ public class FileOperation {
         } catch (FileNotFoundException e) {
             LOGGER.info(e);
         } catch (IOException e) {
-            LOGGER.trace(e);
+            LOGGER.error(e);
         }
         return text.toString();
     }
@@ -29,7 +29,7 @@ public class FileOperation {
         } catch (FileNotFoundException e) {
             LOGGER.info(e);
         } catch (IOException e) {
-            LOGGER.trace(e);
+            LOGGER.error(e);
         }
         StringBuilder text = new StringBuilder();
         InputStream in = FileOperation.class.getClassLoader().getResourceAsStream(settings.getProperties("file.input.path"));
@@ -46,7 +46,7 @@ public class FileOperation {
             out.write(words);
             out.close();
         } catch (IOException e) {
-            LOGGER.trace(e);
+            LOGGER.error(e);
         }
 
     }
