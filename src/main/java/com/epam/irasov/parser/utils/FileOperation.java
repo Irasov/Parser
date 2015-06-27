@@ -1,20 +1,23 @@
 package com.epam.irasov.parser.utils;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.util.Scanner;
 
 public class FileOperation {
+    private static Logger LOGGER = Logger.getLogger(FileOperation.class);
 
     public static String fileRead(String stringText) {
         StringBuilder text = new StringBuilder();
-        try
-        {
+        try {
             BufferedReader out = new BufferedReader(new InputStreamReader(new FileInputStream(stringText), "UTF-8"));
             text.append(out.read());
             out.close();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            LOGGER.info(e);
+        } catch (IOException e) {
+            LOGGER.trace(e);
         }
         return text.toString();
     }
@@ -23,8 +26,10 @@ public class FileOperation {
         Settings settings = Settings.getInstance();
         try {
             settings.loadSettings();
+        } catch (FileNotFoundException e) {
+            LOGGER.info(e);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.trace(e);
         }
         StringBuilder text = new StringBuilder();
         InputStream in = FileOperation.class.getClassLoader().getResourceAsStream(settings.getProperties("file.input.path"));
@@ -35,15 +40,13 @@ public class FileOperation {
         return text.toString();
     }
 
-    public static void fileWrite(String words, String filename){
-        try
-        {
+    public static void fileWrite(String words, String filename) {
+        try {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filename), "UTF8"));
             out.write(words);
             out.close();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+        } catch (IOException e) {
+            LOGGER.trace(e);
         }
 
     }
